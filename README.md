@@ -23,6 +23,11 @@
 [5]: https://img.shields.io/docker/pulls/missuo/deeplx?logo=docker
 [6]: https://img.shields.io/github/v/release/OwO-Network/DeepLX?logo=smartthings
 
+## DeepLX-MORT
+
+A fork of the original DeepLX with modifications to allow for [Custom API](https://github.com/killkimno/MORT/blob/main/README.md#custom-api-usage) in [MORT](https://github.com/killkimno/MORT).
+
+
 ## How to use
 
 > \[!TIP]
