@@ -61,15 +61,15 @@ func authMiddleware(cfg *Config) gin.HandlerFunc {
 
 type PayloadFree struct {
 	TransText   string `json:"text"`
-	SourceLang  string `json:"source_lang"`
-	TargetLang  string `json:"target_lang"`
+	SourceLang  string `json:"source"`
+	TargetLang  string `json:"target"`
 	TagHandling string `json:"tag_handling"`
 }
 
 type PayloadAPI struct {
 	Text        []string `json:"text"`
-	TargetLang  string   `json:"target_lang"`
-	SourceLang  string   `json:"source_lang"`
+	TargetLang  string   `json:"target"`
+	SourceLang  string   `json:"source"`
 	TagHandling string   `json:"tag_handling"`
 }
 
@@ -138,13 +138,9 @@ func main() {
 
 		if result.Code == http.StatusOK {
 			c.JSON(http.StatusOK, gin.H{
-				"code":         http.StatusOK,
-				"id":           result.ID,
-				"data":         result.Data,
-				"alternatives": result.Alternatives,
-				"source_lang":  result.SourceLang,
-				"target_lang":  result.TargetLang,
-				"method":       result.Method,
+				"result": result.Data,
+				"errorMessage": "",
+				"errorCode": "0",
 			})
 		} else {
 			c.JSON(result.Code, gin.H{
@@ -202,13 +198,9 @@ func main() {
 
 		if result.Code == http.StatusOK {
 			c.JSON(http.StatusOK, gin.H{
-				"code":         http.StatusOK,
-				"id":           result.ID,
-				"data":         result.Data,
-				"alternatives": result.Alternatives,
-				"source_lang":  result.SourceLang,
-				"target_lang":  result.TargetLang,
-				"method":       result.Method,
+				"result": result.Data,
+				"errorMessage": "",
+				"errorCode": "0",
 			})
 		} else {
 			c.JSON(result.Code, gin.H{
@@ -227,12 +219,12 @@ func main() {
 		var targetLang string
 
 		translateText = c.PostForm("text")
-		targetLang = c.PostForm("target_lang")
+		targetLang = c.PostForm("target")
 
 		if translateText == "" || targetLang == "" {
 			var jsonData struct {
 				Text       []string `json:"text"`
-				TargetLang string   `json:"target_lang"`
+				TargetLang string   `json:"target"`
 			}
 
 			if err := c.BindJSON(&jsonData); err != nil {

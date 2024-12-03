@@ -15,7 +15,7 @@ package translate
 // Lang represents the language settings for translation
 type Lang struct {
 	SourceLangComputed string `json:"source_lang_computed,omitempty"`
-	TargetLang         string `json:"target_lang"`
+	TargetLang         string `json:"target"`
 	LangUserSelected   string `json:"lang_user_selected,omitempty"`
 }
 
@@ -91,8 +91,8 @@ type TranslationResponse struct {
 				} `json:"sentences"`
 			} `json:"beams"`
 		} `json:"translations"`
-		SourceLang string `json:"source_lang"`
-		TargetLang string `json:"target_lang"`
+		SourceLang string `json:"source"`
+		TargetLang string `json:"target"`
 	} `json:"result"`
 }
 
@@ -103,7 +103,7 @@ type DeepLXTranslationResult struct {
 	Message      string   `json:"message,omitempty"`
 	Data         string   `json:"data"`
 	Alternatives []string `json:"alternatives"`
-	SourceLang   string   `json:"source_lang"`
-	TargetLang   string   `json:"target_lang"`
+	SourceLang   string   `json:"source"`
+	TargetLang   string   `json:"target"`
 	Method       string   `json:"method"`
 }
